@@ -8,11 +8,12 @@ FILE *fp;
  * @instr: instruction string
  * @stack: top of the stack
  * @l_num: line number of instruction
- * @instrs: array of available instructions
+ * @ins: array of available instructions
  *
  * Return: return op_code
  */
-int extract_opcode(char *instr, stack_t **stack, unsigned int l_num, instruction_t instrs[])
+int extract_opcode(char *instr, stack_t **stack,
+		   unsigned int l_num, instruction_t ins[])
 {
 int i = 0, buff_ind = 0, instr_found = -1;
 char curr_buff[BUFF_SIZE];
@@ -37,9 +38,9 @@ i = 0;
 while (i < NO_FEATURES)
 {
 instr_found = 0;
-if (instrs[i].opcode && !strcmp(instrs[i].opcode, curr_buff))
+if (ins[i].opcode && !strcmp(ins[i].opcode, curr_buff))
 {
-instrs[i].f(stack, l_num), instr_found = 1;
+ins[i].f(stack, l_num), instr_found = 1;
 break;
 }
 i++;
