@@ -35,7 +35,7 @@
 #define ERR_ADD "L%d: can't add, stack too short\n"
 #define ERRNO_A -9
 
-#define ERR_SUB "L%d: can't add, stack too short\n"
+#define ERR_SUB "L%d: can't sub, stack too short\n"
 #define ERRNO_SU -10
 
 #define BUFF_SIZE 1024

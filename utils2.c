@@ -52,7 +52,7 @@ int result_sub = 0;
 unsigned int len = stack_len((*stack));
 
 if (len < 2)
-handle_exception(ERRNO_A, NULL, line_number, NULL, stack);
+handle_exception(ERRNO_SU, NULL, line_number, NULL, stack);
 
 result_sub = (*stack)->next->n - (*stack)->n;
 (*stack)->next->n = result_sub;
