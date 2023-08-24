@@ -73,7 +73,7 @@ int result_div = 0;
 unsigned int len = stack_len((*stack));
 
 if (len < 2)
-handle_exception(ERRNO_SU, NULL, line_number, NULL, stack);
+handle_exception(ERRNO_D, NULL, line_number, NULL, stack);
 
 if (!(*stack)->n)
 handle_exception(ERRNO_Z, NULL, line_number, NULL, stack);
