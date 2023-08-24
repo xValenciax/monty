@@ -72,6 +72,8 @@ instruction_t instrs[] = {
 {"add", add},
 {"sub", sub},
 {"div", divide},
+{"mul", mul},
+{"mod", mod},
 {NULL, NULL}
 };
 

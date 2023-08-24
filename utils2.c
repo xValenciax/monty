@@ -82,3 +82,24 @@ result_div = (*stack)->next->n / (*stack)->n;
 (*stack)->next->n = result_div;
 pop(stack, line_number);
 }
+
+/**
+ * sub - subtracts the top two elements of the stack
+ *
+ * @stack: top of the stack
+ * @line_number: line number of the instruction
+ *
+ * Return: always void
+ */
+void mul(stack_t **stack, unsigned int line_number)
+{
+int result_mul = 0;
+unsigned int len = stack_len((*stack));
+
+if (len < 2)
+handle_exception(ERRNO_MUL, NULL, line_number, NULL, stack);
+
+result_mul = (*stack)->next->n * (*stack)->n;
+(*stack)->next->n = result_mul;
+pop(stack, line_number);
+}

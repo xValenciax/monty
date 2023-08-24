@@ -44,9 +44,15 @@
 #define ERR_DIV_BY_ZERO "L%d: division by zero\n"
 #define ERRNO_Z -12
 
+#define ERR_MUL "L%d: can't mul, stack too short\n"
+#define ERRNO_MUL -13
+
+#define ERR_MOD "L%d: can't mod, stack too short\n"
+#define ERRNO_MOD -14
+
 #define BUFF_SIZE 1024
 
-#define NO_FEATURES 9
+#define NO_FEATURES 11
 
 extern FILE *fp;
 
@@ -116,6 +122,8 @@ void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
 void divide(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 
 /* General Utils */

@@ -11,6 +11,12 @@ fprintf(stderr, ERR_DIV, l_no);
 break;
 case ERRNO_Z:
 fprintf(stderr, ERR_DIV_BY_ZERO, l_no);
+break;
+case ERRNO_MUL:
+fprintf(stderr, ERR_MUL, l_no);
+break;
+case ERRNO_MOD:
+fprintf(stderr, ERR_MOD, l_no);
 default:
 break;
 }
