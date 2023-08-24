@@ -47,7 +47,7 @@ case ERRNO_SU:
 fprintf(stderr, ERR_SUB, l_no);
 break;
 default:
-handle_exception2(err, f, l_no, opcode, top);
+handle_exception2(err, l_no, top);
 }
 if (fp)
 fclose(fp);

@@ -108,7 +108,7 @@ void exec_instructions(stack_t **stack);
 /* Error Handling */
 int check_input(int argc, char *args[]);
 void handle_exception(int err, char *f, int l_no, char *opcode, stack_t **top);
-void handle_exception2(int err, char *f, int l_no, char *opcode, stack_t **top);
+void handle_exception2(int err, int l_no, stack_t **top);
 int extract_opcode(char *instr, stack_t **stack, unsigned int l_num, instruction_t instrs[]);
 
 /* Stack Operations */

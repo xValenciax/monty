@@ -60,7 +60,7 @@ pop(stack, line_number);
 }
 
 /**
- * sub - subtracts the top two elements of the stack
+ * divide - divides the top two elements of the stack
  *
  * @stack: top of the stack
  * @line_number: line number of the instruction
@@ -84,7 +84,7 @@ pop(stack, line_number);
 }
 
 /**
- * sub - subtracts the top two elements of the stack
+ * mul - multiplies the top two elements of the stack
  *
  * @stack: top of the stack
  * @line_number: line number of the instruction

@@ -1,8 +1,16 @@
 #include "monty.h"
 
-void handle_exception2(int err,__attribute__((unused)) char *f,
-		       __attribute__((unused))int l_no,
-		       __attribute__((unused))char *opcode, stack_t **top)
+/**
+ * handle_exception2 - checks for any exception thrown by the script
+ * and returns the corresponding error message
+ *
+ * @err: error number
+ * @l_no: line number of the error
+ * @top: top of the stack
+ *
+ * Return: always void
+ */
+void handle_exception2(int err, int l_no, stack_t **top)
 {
 switch (err)
 {

@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * sub - subtracts the top two elements of the stack
+ * mod - calculates the moduluo of the top two elements of the stack
  *
  * @stack: top of the stack
  * @line_number: line number of the instruction
