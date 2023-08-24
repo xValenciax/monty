@@ -39,7 +39,7 @@ free(tmp);
 }
 
 /**
- * add - adds the top two elements of the stack
+ * sub - subtracts the top two elements of the stack
  *
  * @stack: top of the stack
  * @line_number: line number of the instruction
@@ -59,3 +59,26 @@ result_sub = (*stack)->next->n - (*stack)->n;
 pop(stack, line_number);
 }
 
+/**
+ * sub - subtracts the top two elements of the stack
+ *
+ * @stack: top of the stack
+ * @line_number: line number of the instruction
+ *
+ * Return: always void
+ */
+void divide(stack_t **stack, unsigned int line_number)
+{
+int result_div = 0;
+unsigned int len = stack_len((*stack));
+
+if (len < 2)
+handle_exception(ERRNO_SU, NULL, line_number, NULL, stack);
+
+if (!(*stack)->n)
+handle_exception(ERRNO_Z, NULL, line_number, NULL, stack);
+
+result_div = (*stack)->next->n / (*stack)->n;
+(*stack)->next->n = result_div;
+pop(stack, line_number);
+}

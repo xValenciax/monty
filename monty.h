@@ -38,9 +38,15 @@
 #define ERR_SUB "L%d: can't sub, stack too short\n"
 #define ERRNO_SU -10
 
+#define ERR_DIV "L%d: can't div, stack too short\n"
+#define ERRNO_D -11
+
+#define ERR_DIV_BY_ZERO "L%d: division by zero\n"
+#define ERRNO_Z -12
+
 #define BUFF_SIZE 1024
 
-#define NO_FEATURES 7
+#define NO_FEATURES 9
 
 extern FILE *fp;
 
@@ -96,6 +102,7 @@ void exec_instructions(stack_t **stack);
 /* Error Handling */
 int check_input(int argc, char *args[]);
 void handle_exception(int err, char *f, int l_no, char *opcode, stack_t **top);
+void handle_exception2(int err, char *f, int l_no, char *opcode, stack_t **top);
 int extract_opcode(char *instr, stack_t **stack, unsigned int l_num, instruction_t instrs[]);
 
 /* Stack Operations */
@@ -108,6 +115,7 @@ unsigned int stack_len(stack_t *top);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
+void divide(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 
 /* General Utils */
