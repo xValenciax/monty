@@ -22,16 +22,17 @@ return (top == NULL);
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-int data;
-stack_t *new_top = malloc(sizeof(stack_t));
-long curr_file_pos;
-
-if (!new_top)
-handle_exception(ERRNO_M, NULL, -1, NULL);
+int data = 0;
+stack_t *new_top;
+long curr_file_pos = 0;
 
 curr_file_pos = ftell(fp);
-data = extract_push_val(line_number);
+data = extract_push_val(stack, line_number);
 fseek(fp, curr_file_pos, SEEK_SET);
+
+new_top = malloc(sizeof(stack_t)); 
+if (!new_top)
+handle_exception(ERRNO_M, NULL, -1, NULL, stack);
 
 new_top->n = data;
 new_top->prev = NULL;
@@ -58,9 +59,10 @@ new_top->next = (*stack);
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
-stack_t *old_top;
+stack_t *old_top = NULL;
+
 if (is_empty((*stack)))
-handle_exception(ERRNO_PO, NULL, line_number, NULL);
+handle_exception(ERRNO_PO, NULL, line_number, NULL, stack);
 
 old_top = (*stack);
 (*stack) = (*stack)->next;
@@ -80,6 +82,7 @@ free(old_top);
 void display(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 stack_t *curr_top = *stack;
+
 if (is_empty(curr_top))
 return;
 while (curr_top != NULL)
@@ -100,7 +103,7 @@ curr_top = curr_top->next;
 void get_stack_top(stack_t **stack, unsigned int line_number)
 {
 if (is_empty((*stack)))
-handle_exception(ERRNO_PI, NULL, line_number, NULL);
+handle_exception(ERRNO_PI, NULL, line_number, NULL, stack);
 
 printf("%d\n", ((*stack)->n));
 }

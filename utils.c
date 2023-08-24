@@ -38,12 +38,13 @@ return (0);
  *
  * Return: the data found in the instructions
  */
-int extract_push_val(unsigned int line_number)
+int extract_push_val(stack_t **stack, unsigned int line_number)
 {
 char line_buff[BUFF_SIZE], curr_buff[32];
 unsigned int i = 0, ind = 0, val = 0, line_count = 1;
 int is_neg = 0;
 
+memset(curr_buff, 0, BUFF_SIZE);
 fseek(fp, 0, SEEK_SET);
 while (fgets(line_buff, BUFF_SIZE, fp))
 {
@@ -57,12 +58,12 @@ while (_isdigit(line_buff[i]))
 curr_buff[ind] = line_buff[i], ind++, i++;
 
 if (_islower(line_buff[i]))
-handle_exception(ERRNO_P, NULL, line_number, NULL);
+handle_exception(ERRNO_P, NULL, line_number, NULL, stack);
 }
 
 if (ind > 0)
 {
-curr_buff[ind] = '\0';
+curr_buff[ind + 1] = '\0';
 val = atoi(curr_buff);
 return (is_neg ? (-1 * val) : (val));
 }
@@ -70,7 +71,7 @@ i++;
 }
 line_count++;
 }
-handle_exception(ERRNO_P, NULL, line_number, NULL);
+handle_exception(ERRNO_P, NULL, line_number, NULL, stack);
 return (val);
 }
 
@@ -88,7 +89,7 @@ int temp = 0;
 unsigned int len = stack_len((*stack));
 
 if (len < 2)
-handle_exception(ERRNO_S, NULL, line_number, NULL);
+handle_exception(ERRNO_S, NULL, line_number, NULL, stack);
 
 temp = (*stack)->next->n;
 (*stack)->next->n = (*stack)->n;
@@ -109,7 +110,7 @@ int result_add = 0;
 unsigned int len = stack_len((*stack));
 
 if (len < 2)
-handle_exception(ERRNO_A, NULL, line_number, NULL);
+handle_exception(ERRNO_A, NULL, line_number, NULL, stack);
 
 result_add = (*stack)->n + (*stack)->next->n;
 (*stack)->next->n = result_add;

@@ -78,8 +78,8 @@ void exec_instructions(stack_t **stack);
 
 /* Error Handling */
 int check_input(int argc, char *args[]);
-void handle_exception(int err, char *f, int l_no, char *opcode);
-char *extract_opcode(char *instr);
+void handle_exception(int err, char *f, int l_no, char *opcode, stack_t **top);
+int extract_opcode(char *instr, stack_t **stack, unsigned int l_num);
 
 /* Stack Operations */
 int is_empty(stack_t *top);
@@ -90,10 +90,11 @@ void get_stack_top(stack_t **stack, unsigned int line_number);
 unsigned int stack_len(stack_t *top);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *stack);
 
 /* General Utils */
 int _isdigit(int c);
 int _islower(int c);
-int extract_push_val(unsigned int line_number);
+int extract_push_val(stack_t **stack, unsigned int line_number);
 
 #endif

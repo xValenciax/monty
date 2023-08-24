@@ -11,7 +11,7 @@
  *
  * Return: always void
  */
-void handle_exception(int err, char *f, int l_no, char *opcode)
+void handle_exception(int err, char *f, int l_no, char *opcode, stack_t **top)
 {
 switch (err)
 {
@@ -44,6 +44,10 @@ fprintf(stderr, ERR_ADD, l_no);
 default:
 break;
 }
+if (fp)
+fclose(fp);
+if ((*top))
+free_stack((*top));
 exit(EXIT_FAILURE);
 }
 
@@ -57,7 +61,7 @@ exit(EXIT_FAILURE);
  */
 int check_input(int argc, char *args[])
 {
-FILE *fp_test;
+FILE *fp_test = NULL;
 
 if (argc != 2)
 return (ERRNO_U);
