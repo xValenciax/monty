@@ -35,9 +35,12 @@
 #define ERR_ADD "L%d: can't add, stack too short\n"
 #define ERRNO_A -9
 
+#define ERR_SUB "L%d: can't add, stack too short\n"
+#define ERRNO_SU -10
+
 #define BUFF_SIZE 1024
 
-#define NO_FEATURES 6
+#define NO_FEATURES 7
 
 extern FILE *fp;
 
@@ -71,6 +74,20 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct instruction_s - opcode and its function
+ * @opcode: the opcode
+ * @f: function to handle the opcode
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO
+ */
+typedef struct error_s
+{
+        char *msg;
+        int errno;
+} error_t;
+
 
 /* Monty Utils */
 void monty(int argc, char *args[]);
@@ -79,7 +96,7 @@ void exec_instructions(stack_t **stack);
 /* Error Handling */
 int check_input(int argc, char *args[]);
 void handle_exception(int err, char *f, int l_no, char *opcode, stack_t **top);
-int extract_opcode(char *instr, stack_t **stack, unsigned int l_num);
+int extract_opcode(char *instr, stack_t **stack, unsigned int l_num, instruction_t instrs[]);
 
 /* Stack Operations */
 int is_empty(stack_t *top);
@@ -90,6 +107,7 @@ void get_stack_top(stack_t **stack, unsigned int line_number);
 unsigned int stack_len(stack_t *top);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 
 /* General Utils */

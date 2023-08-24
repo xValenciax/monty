@@ -42,6 +42,9 @@ fprintf(stderr, ERR_SWAP, l_no);
 break;
 case ERRNO_A:
 fprintf(stderr, ERR_ADD, l_no);
+break;
+case ERRNO_SU:
+fprintf(stderr, ERR_SUB, l_no);
 default:
 break;
 }

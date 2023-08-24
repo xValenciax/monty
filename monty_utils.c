@@ -8,23 +8,17 @@ FILE *fp;
  * @instr: instruction string
  * @stack: top of the stack
  * @l_num: line number of instruction
+ * @instrs: array of available instructions
  *
  * Return: return op_code
  */
-int extract_opcode(char *instr, stack_t **stack, unsigned int l_num)
+int extract_opcode(char *instr, stack_t **stack, unsigned int l_num, instruction_t instrs[])
 {
 int i = 0, buff_ind = 0, instr_found = -1;
 char curr_buff[BUFF_SIZE];
-instruction_t instrs[] = {
-{"push", push},
-{"pall", display},
-{"pint", get_stack_top},
-{"pop", pop},
-{"swap", swap},
-{"add", add},
-{NULL, NULL}
-};
+
 memset(curr_buff, '\0', BUFF_SIZE);
+
 for (; i < (int)strlen(instr) + 1; i++)
 {
 if (_islower(instr[i]))
@@ -35,8 +29,10 @@ curr_buff[buff_ind + 1] = '\0';
 break;
 }
 }
+
 if (curr_buff[0] == '\0' || !strcmp(curr_buff, "nop"))
 return (1);
+
 i = 0;
 while (i < NO_FEATURES)
 {
@@ -48,8 +44,10 @@ break;
 }
 i++;
 }
+
 if (!instr_found)
 handle_exception(ERRNO_I, NULL, l_num, curr_buff, stack);
+
 return (0);
 }
 
@@ -64,12 +62,22 @@ void exec_instructions(stack_t **stack)
 {
 char buff[BUFF_SIZE];
 unsigned int l_num = 0;
+instruction_t instrs[] = {
+{"push", push},
+{"pall", display},
+{"pint", get_stack_top},
+{"pop", pop},
+{"swap", swap},
+{"add", add},
+{"sub", sub},
+{NULL, NULL}
+};
 
 memset(buff, 0, BUFF_SIZE);
 while (fgets(buff, BUFF_SIZE, fp))
 {
 l_num++;
-extract_opcode(buff, stack, l_num);
+extract_opcode(buff, stack, l_num, instrs);
 }
 }
 
