@@ -8,6 +8,7 @@
  * @f: name of the user passed file
  * @l_no: line number of the error
  * @opcode: instruction's opcode
+ * @top: top of the stack
  *
  * Return: always void
  */

@@ -35,6 +35,7 @@ return (0);
  * extract_push_val - extracts the data from push instruction
  *
  * @line_number: number of the line of the instruction
+ * @stack: top of the stack
  *
  * Return: the data found in the instructions
  */

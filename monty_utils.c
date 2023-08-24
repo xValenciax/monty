@@ -6,13 +6,14 @@ FILE *fp;
  * extract_opcode - extracts opcode from instruction
  *
  * @instr: instruction string
+ * @stack: top of the stack
+ * @l_num: line number of instruction
  *
  * Return: return op_code
  */
 int extract_opcode(char *instr, stack_t **stack, unsigned int l_num)
 {
-int i = 0, buff_ind = 0;
-unsigned int instr_found = -1;
+int i = 0, buff_ind = 0, instr_found = -1;
 char curr_buff[BUFF_SIZE];
 instruction_t instrs[] = {
 {"push", push},
@@ -23,7 +24,6 @@ instruction_t instrs[] = {
 {"add", add},
 {NULL, NULL}
 };
-
 memset(curr_buff, '\0', BUFF_SIZE);
 for (; i < (int)strlen(instr) + 1; i++)
 {
@@ -35,10 +35,7 @@ curr_buff[buff_ind + 1] = '\0';
 break;
 }
 }
-if (curr_buff[0] == '\0')
-return (1);
-
-if (!strcmp(curr_buff, "nop"))
+if (curr_buff[0] == '\0' || !strcmp(curr_buff, "nop"))
 return (1);
 i = 0;
 while (i < NO_FEATURES)
@@ -57,7 +54,7 @@ return (0);
 }
 
 /**
- * exec_instruction - executes an instruction
+ * exec_instructions - executes an instruction
  *
  * @stack: top of the stack
  *
@@ -80,7 +77,7 @@ extract_opcode(buff, stack, l_num);
  * monty - main function that runs the whole script
  *
  * @argc: count of the arguments
- * @argv: array containing the arguments
+ * @args: array containing the arguments
  *
  * Return: always void
  */

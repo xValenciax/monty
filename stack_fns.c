@@ -30,7 +30,7 @@ curr_file_pos = ftell(fp);
 data = extract_push_val(stack, line_number);
 fseek(fp, curr_file_pos, SEEK_SET);
 
-new_top = malloc(sizeof(stack_t)); 
+new_top = malloc(sizeof(stack_t));
 if (!new_top)
 handle_exception(ERRNO_M, NULL, -1, NULL, stack);
 
