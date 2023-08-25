@@ -24,6 +24,8 @@ for (; i < (int)strlen(instr) + 1; i++)
 {
 if (_islower(instr[i]))
 curr_buff[buff_ind] = instr[i], buff_ind++;
+if (instr[i] == '#')
+return (-1);
 if ((instr[i] == ' ' || i == (int)strlen(instr) - 1) && buff_ind > 0)
 {
 curr_buff[buff_ind + 1] = '\0';
@@ -45,7 +47,6 @@ break;
 }
 i++;
 }
-
 if (!instr_found)
 handle_exception(ERRNO_I, NULL, l_num, curr_buff, stack);
 
